@@ -426,7 +426,7 @@
                     if (intervalId){
                         clearInterval(intervalId);
                     }
-                    updateData();
+                    updateDatas();
                     result = get_24h();
                     labels_24h = result[0];
                     datas_24h = result[1];
@@ -441,26 +441,24 @@
                     if (intervalId){
                         clearInterval(intervalId);
                     }
+                    updateDatas();
                     labels_cut = labels.slice(-30);
                     data_cut = datas.slice(-30);
-                    // console.log(labels_cut);
                     updateChart(labels_cut, data_cut);
                     intervalId = setInterval(function () {
-                        // 从flask获取数据
                         updateData();
-                        // if label exits, do nothing
-                        if (labels_cut.includes(labels.slice(-1)[0])){
+                        // if labels_cut contains the last element of labels
+                        if (labels_cut.includes(labels[labels.length - 1])){
                             return;
                         }
-                        labels_cut.push(labels.slice(-1)[0]);
-                        data_cut.push(datas.slice(-1)[0]);
+                        labels_cut.push(labels[labels.length - 1]);
+                        data_cut.push(datas[datas.length - 1]);
                         if (labels_cut.length > 30){
                             // remove the first element
                             labels_cut.shift();
                             data_cut.shift();
                         }
                         updateChart(labels_cut, data_cut);
-                        
                         }, delay);  // 每10秒更新一次
                 };
 
@@ -477,8 +475,31 @@
                             return response.json();
                         })
                         .then(function (data) {
+                            new_label = data.label;
+                            new_data = data.data;
+                            if (labels.includes(new_label)){
+                                return;
+                            }
+                            labels.push(new_label);
+                            datas.push(new_data);
+                        })
+                        .catch(function (error) {
+                            if (intervalId){
+                                clearInterval(intervalId);
+                            }
+                        })
+                        ;
+                }
+
+                function updateDatas() {
+                    // console.log("updateData");
+                    fetch('/humidity2')
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
                             labels = data.labels;
-                            datas = data.data;
+                            datas = data.datas;
                         })
                         .catch(function (error) {
                             if (intervalId){

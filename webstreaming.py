@@ -29,15 +29,14 @@ humidity_data_list_old = []
 time_list_old = []
 humidity_data_list_new = []
 time_list_new = []
-new_data = False
 # delay of the webpage, 
 # arduino:10s fixed, backend = delay/2, frontend = delay, IO = delay*10 
 delay = 30
 
 @app.route("/")
 def index():
-	humidity_data_list_cut = humidity_data_list_old
-	time_list_cut = time_list_old
+	humidity_data_list_cut = humidity_data_list_old + humidity_data_list_new
+	time_list_cut = time_list_old + time_list_new
 	chart_data = {'labels': time_list_cut,'data': humidity_data_list_cut, 'delay': delay*1000}
 	return render_template('index.html', chart_data=chart_data)
 
@@ -48,11 +47,22 @@ def watering():
 
 @app.route("/humidity")
 def humidity_data():
-	global new_data
+	# humidity_data_list_cut = humidity_data_list_old + humidity_data_list_new
+	# time_list_cut = time_list_old + time_list_new
+	if humidity_data_list_new and time_list_new:
+		new_humidity = humidity_data_list_new[-1]
+		new_label = time_list_new[-1]
+	else:
+		new_humidity = humidity_data_list_old[-1]
+		new_label = time_list_old[-1]
+	chart_data = {'label': new_label,'data': new_humidity}
+	return chart_data
+
+@app.route("/humidity2")
+def humidity_datas():
 	humidity_data_list_cut = humidity_data_list_old + humidity_data_list_new
 	time_list_cut = time_list_old + time_list_new
-	chart_data = {'labels': time_list_cut,'data': humidity_data_list_cut, 'new_data': new_data}
-	new_data = False
+	chart_data = {'labels': time_list_cut,'datas': humidity_data_list_cut}
 	return chart_data
 
 def average_sample(data_list, target_length=50):
@@ -93,8 +103,6 @@ def humidity(delay=30):
 			humidity_data_list_new.append(value)
 			# current time
 			time_list_new.append(time.strftime("%H:%M:%S", time.localtime()))
-			global new_data
-			new_data = True
 
 
 def save_data(delay=120):
