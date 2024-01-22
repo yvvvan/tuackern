@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gnome Office</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='plant.png') }}">
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <style>
+        body {
+            text-align: center;
+            padding: 10px 5%;
+            background-color: rgb(55, 191, 183);
+            color:white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px; /* Set a maximum width for better readability on smaller screens */
+            margin: 0 auto; /* Center the container */
+        }
+
+        img {
+            width: 100%; /* Make the image responsive */
+            max-width: 100%; /* Ensure the image doesn't exceed its original size */
+            height: auto; /* Maintain the aspect ratio of the image */
+            display: block; /* Remove any extra space below the image */
+            margin: 0 auto; /* Center the image within its container */
+        }
+
+        .rounded_image{
+            border-radius: 20px; /* You can adjust the value to change the roundness */
+        }
+
+        .rounded_container {
+            border-radius: 20px; /* You can adjust the value to change the roundness */
+            position: relative; /* Set the position property to relative for positioning children */
+            overflow: hidden; /* Ensures the border radius is applied correctly */
+            max-width: 100%!important;
+            border: 15px solid rgba(51, 51, 51, 0);
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .live_sign {
+            border-radius: 15px;
+            border: 3px solid red;
+            color:red;
+            position: absolute; /* Position the live indicator absolutely within the chart container */
+            top: 0; /* Align to the top */
+            right: 0; /* Align to the right */
+            padding: 5px 10px; /* Add some padding */
+            display: none; /* Make it a block element to respect padding and positioning */
+        }
+
+        h2{
+            margin-bottom: 0.3rem;
+        }
+
+
+
+        /* Define the animation */
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Apply the animation to the element */
+        .show-hide-div {
+            animation: fadeInOut 2s ease-in-out infinite; /* You can adjust the duration (2s) as needed */
+            display: none; /* Initially hide the div */
+        }
+
+        .normal_button{
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            border-color: transparent;
+            transition: background-color 0.3s ease;
+            background-color: #139487; /* 蓝绿色 */
+        }
+
+        .chartControl{
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+        }
+        .char_button{
+            width:45%;
+            height: 50px;
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .light_button{
+            width:75%;
+        }
+
+        .char_button:active {
+            background-color: #1a7b6b; /* 更深的蓝绿色 */
+        }
+
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .switch-label {
+            margin-right: 10px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .round-switch-input {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-right: 20px;
+        }
+
+        .round-switch-input input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .round-switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding-left: 3px;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .round-switch-slider:before {
+            content: "";
+            height: 26px;
+            width: 26px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .round-switch-input input:checked + .round-switch-slider {
+            background-color: #2196F3;
+        }
+
+        .round-switch-input input:checked + .round-switch-slider:before {
+            transform: translateX(26px);
+        }
+
+        .label_left{
+            width: 70%;
+        }
+
+        .switch_right{
+            width: 30%;
+        }
+
+
+        .buttonlabel_left{
+            width: 50%;
+            padding-left: 20px;
+            text-align:left;
+        }
+        .button_right{
+            width:50%;
+            padding: 10px;
+        }
+        .operation_button{
+            width:100%;
+        }
+        .buttonlabel_top{
+            width: 100%;
+            padding-left: 20px;
+            text-align:left;
+            margin-bottom: 4px;
+        }
+        .button_down{
+            width:100%;
+            padding-left:20px;
+            padding-right:20px;
+        }
+        
+        .operation_button_down{
+            width:25%;
+        }
+
+        #slider-container {
+            width: 80%;
+            margin: 15px auto 50px auto;
+            position: relative;
+        }
+
+        #slider {
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        #slider-thumb {
+            width: 20px;
+            height: 40px;
+            background-color: #3498db;
+            position: absolute;
+            top: -10px;
+            cursor: grab;
+        }
+
+
+        /* .myChart{
+            height: 600px;
+        } */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="myVedio">
+                <h1>Gnome Office</h1>
+                <h2>Your Plant</h2>
+                <div class="rounded_container">
+                    <div class="live_sign show-hide-div" style="display:block">🔴Live </div>
+                    <img class="rounded_image" src="{{ url_for('video_feed') }}" alt="Gnome Office Video Feed">
+                </div>
+            </div>
+
+            <!-- <div class="col-sm-12">
+                <h2>Text</h2>
+                <p>{{ text_data}}</p>
+            </div> -->
+
+            
+            <div class="myChart" >
+                <h2>Sensor</h2>
+                <h4>Humidity</h4>
+                <div class="rounded_container" >
+                    <div id="live_sign" class="live_sign show-hide-div">🔴Live </div>
+                    <canvas class="rounded_image" id="myLineChart" style="background-color:white" width="400" height="300"></canvas>
+                </div>
+            </div>
+
+
+
+            <!-- two buttons: show all data, show last 30 data -->
+            <div class="chartControl">
+                <button class="char_button normal_button" id="show_all">Today </button>
+                <button class="char_button normal_button" id="show_live">Real Time <br> <span style="font-size: 10px;">(sample each 30s)</span></button>
+            </div>
+
+
+            <div class="otherControl" >
+                <h2>Operation</h2>
+                <div class="switch-container">
+                    <span class="switch-label label_left">Automatic Smart Caring</span>
+                    <label class="round-switch-input switcher_right">
+                        <input type="checkbox">
+                        <span class="round-switch-slider"></span>
+                    </label>
+                </div>
+                <div class="switch-container">
+                    <span class="switch-label label_left">Sensor</span>
+                    <label class="round-switch-input switcher_right">
+                        <input type="checkbox">
+                        <span class="round-switch-slider"></span>
+                    </label>
+                </div>
+                <div class="switch-container">
+                    <span class="buttonlabel_left">Manuel Operation</span>
+                    <label class="button_right">
+                        <button class="operation_button normal_button">Handbook</button>
+                    </label>
+                </div>
+                <div class="container">
+                    <p class="buttonlabel_top">Watering</p>
+                    <label class="button_down">
+                        <button class="operation_button_down normal_button" id="watering1">100ml</button>
+                        <button class="operation_button_down normal_button" id="watering2">250ml</button>
+                        <button class="operation_button_down normal_button" id="watering3">500ml</button>
+                    </label>
+                </div>
+                <div class="container">
+                    <p class="buttonlabel_top">Artificial Lighting</p>
+                    <label class="button_down">
+                        <button class="light_button normal_button" id="lighting">On</button>
+                    </label>
+                </div>
+                <div class="container">
+                    <p class="buttonlabel_top">Temperature Control</p>
+                    <div id="slider-container">
+                        <div id="slider"></div>
+                        <div id="slider-thumb" draggable="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var ctx = document.getElementById('myLineChart').getContext('2d');
+
+                var labels = {{ chart_data['labels'] | tojson }};
+                var datas = {{ chart_data['data'] | tojson }};
+                var delay = {{ chart_data['delay'] | tojson }};
+
+
+                function get_24h(){
+                    // 以24小时设置一个label
+                    var labels_24h = [];
+                    for (var i = 0; i < 24; i++) {
+                        labels_24h.push(i.toString() + ":00");
+                    }
+
+                    // 以24小时设置data
+                    var datas_24h = [];
+                    var datas_24h_sum = new Array(24).fill(0);
+                    var datas_24h_count = new Array(24).fill(0);
+                    // 从labels中找到对应时间的data，然后取平均值
+                    j = 0;
+                    
+                    for (j; j < labels.length; j++) {
+                        hour = labels[j].slice(0, 2);
+                        // hour to int
+                        hour = parseInt(hour);
+                        datas_24h_sum[hour] += datas[j];
+                        datas_24h_count[hour] += 1;
+                    }
+                    for (var i = 0; i < 24; i++) {
+                        if (datas_24h_count[i] == 0){
+                            datas_24h.push(0);
+                        }else{
+                            datas_24h.push(datas_24h_sum[i] / datas_24h_count[i]);
+                        }
+                    }
+                    // if 0 change to Nan
+                    for (var i = 0; i < 24; i++) {
+                        if (datas_24h[i] == 0){
+                            datas_24h[i] = NaN;
+                        }
+                    }
+                    return [labels_24h, datas_24h];
+                }
+
+
+                var intervalId;
+
+                var chartData = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Humidity',
+                        borderColor: 'rgb(75, 192, 192)',
+                        data:  datas,
+                        tension: 0.7,
+                    }]
+                };
+
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: chartData,
+                    options: {
+                        // scales: {
+                        //     x: {
+                        //         type: "linear", // 使用线性刻度
+                        //         position: "bottom",
+                        //     },
+                        //     y: {
+                        //         type: "linear",
+                        //         position: "left",
+                        //     }
+                        // },
+                        plugins: {
+                            zoom: {
+                                pan: {
+                                    enabled: true,
+                                    mode: "x", // 允许在 x 轴上平移
+                                },
+                                zoom: {
+                                    wheel: {
+                                        enabled: true,
+                                    },
+                                    pinch: {
+                                        enabled: true,
+                                    },
+                                    mode: "x", // 只允许在 x 轴上缩放
+                                },
+                            }
+                        }
+                    }
+                });
+
+                var labels_24h;
+                var datas_24h;
+                result = get_24h();
+                labels_24h = result[0];
+                datas_24h = result[1];
+                updateChart(labels_24h, datas_24h);
+
+                
+
+                // if show all button is clicked
+                document.getElementById("show_all").onclick = function() {
+                    // hide the live sign
+                    document.getElementById("live_sign").style.display = "none";
+                    // stop the live update
+                    if (intervalId){
+                        clearInterval(intervalId);
+                    }
+                    updateData();
+                    result = get_24h();
+                    labels_24h = result[0];
+                    datas_24h = result[1];
+                    updateChart(labels_24h, datas_24h);
+                };
+
+                // if show live button is clicked
+                document.getElementById("show_live").onclick = function() {
+                    // show the live sign
+                    document.getElementById("live_sign").style.display = "block";
+                    // stop the live update
+                    if (intervalId){
+                        clearInterval(intervalId);
+                    }
+                    labels_cut = labels.slice(-30);
+                    data_cut = datas.slice(-30);
+                    // console.log(labels_cut);
+                    updateChart(labels_cut, data_cut);
+                    intervalId = setInterval(function () {
+                        // 从flask获取数据
+                        updateData();
+                        // if label exits, do nothing
+                        if (labels_cut.includes(labels.slice(-1)[0])){
+                            return;
+                        }
+                        labels_cut.push(labels.slice(-1)[0]);
+                        data_cut.push(datas.slice(-1)[0]);
+                        if (labels_cut.length > 30){
+                            // remove the first element
+                            labels_cut.shift();
+                            data_cut.shift();
+                        }
+                        updateChart(labels_cut, data_cut);
+                        
+                        }, delay);  // 每10秒更新一次
+                };
+
+                function updateChart(labels_cut, data_cut) {
+                    myChart.data.labels = labels_cut;
+                    myChart.data.datasets[0].data = data_cut;
+                    myChart.update();
+                }
+
+                function updateData() {
+                    // console.log("updateData");
+                    fetch('/humidity')
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            labels = data.labels;
+                            datas = data.data;
+                        })
+                        .catch(function (error) {
+                            if (intervalId){
+                                clearInterval(intervalId);
+                            }
+                        })
+                        ;
+                }
+
+                // if watering1 or watering2 or watering3 button is clicked
+                document.getElementById("watering1").onclick = function() {
+                    watering(0);
+                    //alert
+                    alert("Watering 100ml");
+                };
+                document.getElementById("watering2").onclick = function() {
+                    watering(1);
+                    //alert
+                    alert("Watering 250ml");
+                };
+                document.getElementById("watering3").onclick = function() {
+                    watering(2);
+                    //alert
+                    alert("Watering 500ml");
+                };
+
+                function watering(limit){
+                    fetch('/watering')
+                        .then(function (response) {
+                            // console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        ;
+                }
+
+                // if lighting button is clicked
+                document.getElementById("lighting").onclick = function() {
+                    if (document.getElementById("lighting").innerHTML == "On"){
+                        document.getElementById("lighting").innerHTML = "Off";
+                        document.getElementById("lighting").style.backgroundColor = "#808080";
+                        alert("Lighting Off")
+                    }else{
+                        document.getElementById("lighting").innerHTML = "On";
+                        document.getElementById("lighting").style.backgroundColor = "#139487";
+                        alert("Lighting On")
+                    }
+                };
+
+
+                // slider
+                document.addEventListener('DOMContentLoaded', function() {
+                var sliderContainer = document.getElementById('slider-container');
+                var slider = document.getElementById('slider');
+                var thumb = document.getElementById('slider-thumb');
+
+                var isDragging = false;
+
+                thumb.addEventListener('mousedown', function(e) {
+                    isDragging = true;
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mouseup', function() {
+                    isDragging = false;
+                });
+
+                document.addEventListener('mousemove', function(e) {
+                    if (isDragging) {
+                        updateSliderPosition(e.clientX);
+                    }
+                });
+
+                thumb.addEventListener('dragstart', function(e) {
+                    e.preventDefault();
+                });
+
+                sliderContainer.addEventListener('click', function(e) {
+                    if (!isDragging) {
+                        updateSliderPosition(e.clientX);
+                    }
+                });
+
+                function updateSliderPosition(clientX) {
+                    var rect = slider.getBoundingClientRect();
+                    var position = (clientX - rect.left) / rect.width;
+                    position = Math.max(0, Math.min(1, position)); // Ensure position is between 0 and 1
+                    thumb.style.left = (position * 100) + '%';
+                }
+            });
+        
+                
+            </script>
+        </div>
+    </div>
+</body>
+</html>
