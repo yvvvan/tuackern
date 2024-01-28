@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gnome Office</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='plant.png') }}">
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <script src="{{ url_for('static', filename='libs/hammer.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='libs/chart.js') }}"></script>
+    <script src="{{ url_for('static', filename='libs/chartjs_plugin_zoom') }}"></script>
     <style>
         body {
             text-align: center;
@@ -43,7 +43,18 @@
             background-color: rgba(255, 255, 255, 0.4);
         }
 
-        .live_sign {
+        .live_sign_1 {
+            border-radius: 15px;
+            border: 3px solid red;
+            color:red;
+            position: absolute; /* Position the live indicator absolutely within the chart container */
+            bottom: 0; /* Align to the top */
+            right: 0; /* Align to the right */
+            padding: 5px 10px; /* Add some padding */
+            display: none; /* Make it a block element to respect padding and positioning */
+        }
+
+        .live_sign_2 {
             border-radius: 15px;
             border: 3px solid red;
             color:red;
@@ -243,7 +254,7 @@
                 <h1>Gnome Office</h1>
                 <h2>Your Plant</h2>
                 <div class="rounded_container">
-                    <div id="live_sign_vedio" class="live_sign show-hide-div" style="display:block">🔴Live </div>
+                    <div id="live_sign_vedio" class="live_sign_2 show-hide-div" style="display:block;">🔴Live </div>
                     <img class="rounded_image" src="{{ url_for('video_feed') }}" alt="Gnome Office Video Feed">
                 </div>
             </div>
@@ -259,7 +270,7 @@
                 <h2>Sensors</h2>
                 <h4 id="humidity">Humidity ▲</h4>
                 <div class="rounded_container" id="humidity_div">
-                    <div id="live_sign" class="live_sign show-hide-div">🔴Live </div>
+                    <div id="live_sign" class="live_sign_2 show-hide-div">🔴Live </div>
                     <canvas class="rounded_image" id="myLineChart" style="background-color:white" width="400" height="300"></canvas>
                     <div class="chartControl">
                         <button class="char_button normal_button" id="show_all">Today </button>
