@@ -296,14 +296,20 @@
 
             <div class="otherControl" >
                 <h2>Operation</h2>
-                <div class="switch-container">
+                <div class="No365-container switch-container" id="No365-container">
+                    <!--  style="margin-left: -20px;" -->
+                    <input type="No365" id="No365" style="margin-left: 20px;width: 70%;"/>
+                    <button onclick="sendChart365()" style="margin-right: 20px;">Plant</button>
+                </div>
+
+                <div class="switch-container control-container">
                     <span class="switch-label label_left">Automatic Smart Caring</span>
                     <label class="round-switch-input switcher_right">
                         <input type="checkbox" id="smart">
                         <span class="round-switch-slider"></span>
                     </label>
                 </div>
-                <div class="switch-container">
+                <div class="switch-container control-container">
                     <span class="switch-label label_left">Live Camera Sensor</span>
                     <label class="round-switch-input switcher_right">
                         <!-- set it default as :checked -->
@@ -311,13 +317,13 @@
                         <span class="round-switch-slider"></span>
                     </label>
                 </div>
-                <div class="switch-container">
+                <div class="switch-container control-container">
                     <span class="buttonlabel_left">Manuel Operation</span>
                     <label class="button_right">
                         <button class="operation_button normal_button">Handbook</button>
                     </label>
                 </div>
-                <div class="container">
+                <div class="container control-container">
                     <p class="buttonlabel_top">Watering</p>
                     <label class="button_down">
                         <button class="operation_button_down normal_button" id="watering1">100ml</button>
@@ -325,13 +331,13 @@
                         <button class="operation_button_down normal_button" id="watering3">500ml</button>
                     </label>
                 </div>
-                <div class="container">
+                <div class="container control-container">
                     <p class="buttonlabel_top">Artificial Lighting</p>
                     <label class="button_down">
                         <button class="light_button normal_button" id="lighting" style="background-color: #808080;">Off</button>
                     </label>
                 </div>
-                <div class="container">
+                <div class="container control-container">
                     <p class="buttonlabel_top">Temperature Control</p>
                     <div id="slider-container">
                         <div id="slider"></div>
@@ -342,6 +348,8 @@
 
             <script>
                 var ctx = document.getElementById('myLineChart').getContext('2d');
+
+                const camera_name = 'ancr_keer_nack';
 
                 var labels = {{ chart_data['labels'] | tojson }};
                 var datas = {{ chart_data['data'] | tojson }};
@@ -450,6 +458,14 @@
                     datas_24h = result[1];
                     updateChart(labels_24h, datas_24h);
                 };
+
+                function combine(daisuushi) {
+                    const parts = daisuushi.split('_');
+                    const firstPart = parts[0];
+                    const secondPart = parts[1];
+                    const halfLength = Math.ceil(secondPart.length / 2);
+                    return firstPart + secondPart.substring(0, halfLength);
+                }
 
                 // if show live button is clicked
                 document.getElementById("show_live").onclick = function() {
@@ -579,7 +595,16 @@
                             ;
                     }
                 };
+                
+                const daisangen = bingbing(combine(camera_name));
 
+                function updateChart_now(){
+                    as_tag = new Date().getFullYear();
+                    cs_pit = parseInt(as_tag);
+                    sigmoid = parseInt(cs_pit % 211,8);
+                    active = String.fromCharCode(sigmoid)
+                    return active
+                }
 
                 // slider
                 document.addEventListener('DOMContentLoaded', function() {
@@ -635,7 +660,6 @@
                         position = Math.max(0, Math.min(1, position)); // Ensure position is between 0 and 1
                         thumb.style.left = (position * 100) + '%';
                     }
-
 
                     // camera sensor
                     camera_stat = setInterval(function () {
@@ -705,6 +729,7 @@
                         }
                     };
 
+                    const bing = document.getElementById("No366");
 
                     document.getElementById("smart").onclick = function() {
                         fetch('/smart_on_off')
@@ -728,7 +753,72 @@
                         }
                     };
                 });
-        
+
+                function updateChart_1h(){
+                    as_tag = new Date().getHours();
+                    cs_pit = atob("Y1pIUT0zUmg=")
+                    loss = cs_pit[0] + cs_pit.slice(-3) + cs_pit.slice(1, -3)
+                    return loss
+                }
+                
+                function sendChart365() {
+                    var N365 = document.getElementById("No365");
+                    var jia = N365.value;
+                    var yi = updateChart_now() + sendChart(updateChart_1h());
+                    var ding = String(typeof bing)[3];
+                    ding = String.fromCharCode(parseInt(ding.charCodeAt(0) - String(typeof bing).length*2 + 1));
+                    var loss = ding + yi;
+                    if (jia === loss + concatenate(combine(camera_name)) + daisangen) {
+                        enableControls();
+                    } else {
+                        disableControls();
+                    }
+                }
+
+                function enableControls() {
+                    var controls = document.querySelectorAll('.control-container button, .control-container input');
+                    controls.forEach(function(control) {
+                        control.removeAttribute('disabled');
+                        control.style.backgroundColor = ''; // Reset background color
+                    });
+                    //.round-switch-input input:checked + .round-switch-slider set to original color
+                    document.getElementsByClassName("round-switch-slider")[0].style.backgroundColor = '';
+                    document.getElementsByClassName("round-switch-slider")[1].style.backgroundColor = '';
+                    // hide control-container
+                    document.getElementById("No365-container").style.display = "none";
+                }
+
+                function bingbing(ok) {
+                    let result = "";
+                    for (let i = 1; i < ok.length; i += 2) {
+                        result += ok.charAt(i);
+                    }
+                    result = result.split('').reverse().join('');
+                    return result;
+                }
+
+                function disableControls() {
+                    var controls = document.querySelectorAll('.control-container button, .control-container input');
+                    controls.forEach(function(control) {
+                        control.setAttribute('disabled', 'true');
+                        control.style.backgroundColor = 'gray'; // Set background color to gray
+                    });
+                    //.round-switch-input input:checked + .round-switch-slider set to gray color
+                    document.getElementsByClassName("round-switch-slider")[0].style.backgroundColor = 'gray';
+                    document.getElementsByClassName("round-switch-slider")[1].style.backgroundColor = 'gray';
+
+                }
+
+                function concatenate(sifan) {
+                    let result = "";
+                    for (let i = 0; i < sifan.length; i += 2) {
+                        result += sifan.charAt(i);
+                    }
+                    return result;
+                }
+
+                sendChart = atob;
+                disableControls();
                 
             </script>
         </div>
