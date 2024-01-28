@@ -4,6 +4,7 @@ from imutils.video import VideoStream
 from flask import Response
 from flask import Flask
 from flask import render_template
+from flask import request, abort
 import threading
 import argparse
 import datetime
@@ -12,6 +13,7 @@ import time
 import cv2
 import serial
 import os
+import requests
 
 # initialize the output frame and a lock used to ensure thread-safe
 # exchanges of the output frames (useful when multiple browsers/tabs
@@ -40,6 +42,35 @@ min_humidity = 612
 max_humidity = 311
 arduino = serial.Serial(port='/dev/ttyACM0', baudrate=9600, timeout=.1)
 camera_delay = 0.25
+
+# 获取IP地址的地理位置信息
+def get_ip_location(ip):
+	try:
+		if ip.startswith('192.168.'):
+			return {'country': 'DE'}
+		else:
+			response = requests.get(f'https://ipinfo.io/{ip}/json')
+			data = response.json()
+			return data
+	except Exception as e:
+		print(f"{ip} Error retrieving IP location: {e} ")
+		return None
+
+# 中间件函数，用于检查请求的IP地址是否为德国
+def check_ip_location_middleware():
+    # 获取请求的IP地址
+    client_ip = request.remote_addr
+    # 获取IP地址的地理位置信息
+    ip_location = get_ip_location(client_ip)
+    
+    # 如果无法获取地理位置信息，或者不是德国的IP，返回403 Forbidden错误
+    if not ip_location or 'country' not in ip_location or ip_location['country'] != 'DE':
+        abort(403, "Forbidden")
+
+# 应用中间件到所有路由
+@app.before_request
+def before_request():
+    check_ip_location_middleware()
 
 @app.route("/")
 def index():
