@@ -1,0 +1,92 @@
+nohup: ignoring input
+ * Serving Flask app 'webstreaming'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5323
+ * Running on http://192.168.1.109:5323
+[33mPress CTRL+C to quit[0m
+192.168.1.115 - - [23/Jan/2024 00:49:05] "GET / HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:06] "GET /video_feed HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:06] "[36mGET /static/plant.png HTTP/1.0[0m" 304 -
+192.168.1.115 - - [23/Jan/2024 00:49:08] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:09] "GET / HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:10] "GET /video_feed HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:10] "[36mGET /static/plant.png HTTP/1.0[0m" 304 -
+192.168.1.115 - - [23/Jan/2024 00:49:12] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:15] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:18] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:21] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:22] "GET /humidity2 HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:24] "GET /humidity2 HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:24] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:26] "GET /smart_on_off HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:27] "GET /smart_on_off HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:27] "GET /video_status HTTP/1.0" 200 -
+watering
+192.168.1.115 - - [23/Jan/2024 00:49:28] "GET /watering HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:30] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:31] "GET /light_on_off HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:33] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:36] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:39] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:42] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:45] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:46] "GET /humidity2 HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:49] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:51] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:54] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:49:57] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:00] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:03] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:06] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:09] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:12] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:15] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:16] "GET /humidity HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:18] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:21] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:24] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:27] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:30] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:33] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:36] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:39] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:42] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:45] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:46] "GET / HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:46] "GET /video_feed HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:47] "[36mGET /static/plant.png HTTP/1.0[0m" 304 -
+192.168.1.115 - - [23/Jan/2024 00:50:48] "GET /humidity2 HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:49] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:52] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:55] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:50:58] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:01] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:04] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:07] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:10] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:13] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:16] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:18] "GET /humidity HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:19] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:22] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:25] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:28] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:31] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:34] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:37] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:40] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:42] "GET /light_on_off HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:43] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:46] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:48] "GET /humidity HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:49] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:52] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:55] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:51:58] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:52:01] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:52:04] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:52:07] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:52:10] "GET /video_status HTTP/1.0" 200 -
+192.168.1.115 - - [23/Jan/2024 00:52:13] "GET /video_status HTTP/1.0" 200 -

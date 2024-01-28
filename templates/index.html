@@ -243,7 +243,7 @@
                 <h1>Gnome Office</h1>
                 <h2>Your Plant</h2>
                 <div class="rounded_container">
-                    <div class="live_sign show-hide-div" style="display:block">🔴Live </div>
+                    <div id="live_sign_vedio" class="live_sign show-hide-div" style="display:block">🔴Live </div>
                     <img class="rounded_image" src="{{ url_for('video_feed') }}" alt="Gnome Office Video Feed">
                 </div>
             </div>
@@ -252,39 +252,51 @@
                 <h2>Text</h2>
                 <p>{{ text_data}}</p>
             </div> -->
+            <hr>
 
             
             <div class="myChart" >
-                <h2>Sensor</h2>
-                <h4>Humidity</h4>
-                <div class="rounded_container" >
+                <h2>Sensors</h2>
+                <h4 id="humidity">Humidity ▲</h4>
+                <div class="rounded_container" id="humidity_div">
                     <div id="live_sign" class="live_sign show-hide-div">🔴Live </div>
                     <canvas class="rounded_image" id="myLineChart" style="background-color:white" width="400" height="300"></canvas>
+                    <div class="chartControl">
+                        <button class="char_button normal_button" id="show_all">Today </button>
+                        <button class="char_button normal_button" id="show_live">Real Time <br> <span style="font-size: 10px;">(sample each 30s)</span></button>
+                    </div>
                 </div>
+                
+                <h4 id="temperature">Temperature ▼</h4>
+                <div class="rounded_container" id="temperature_div" style="display: none;">
+                    <div class="live_sign show-hide-div">🔴Live </div>
+                    <canvas class="rounded_image" id="" style="background-color:white" width="400" height="300"></canvas>
+                    <div class="chartControl">
+                        <button class="char_button normal_button" >Today </button>
+                        <button class="char_button normal_button" >Real Time <br> <span style="font-size: 10px;">(sample each 30s)</span></button>
+                    </div>
+                </div>
+                
+    
             </div>
 
-
-
-            <!-- two buttons: show all data, show last 30 data -->
-            <div class="chartControl">
-                <button class="char_button normal_button" id="show_all">Today </button>
-                <button class="char_button normal_button" id="show_live">Real Time <br> <span style="font-size: 10px;">(sample each 30s)</span></button>
-            </div>
-
+            <hr
+            
 
             <div class="otherControl" >
                 <h2>Operation</h2>
                 <div class="switch-container">
                     <span class="switch-label label_left">Automatic Smart Caring</span>
                     <label class="round-switch-input switcher_right">
-                        <input type="checkbox">
+                        <input type="checkbox" id="smart">
                         <span class="round-switch-slider"></span>
                     </label>
                 </div>
                 <div class="switch-container">
-                    <span class="switch-label label_left">Sensor</span>
+                    <span class="switch-label label_left">Live Camera Sensor</span>
                     <label class="round-switch-input switcher_right">
-                        <input type="checkbox">
+                        <!-- set it default as :checked -->
+                        <input type="checkbox" id="sensor_status" checked>
                         <span class="round-switch-slider"></span>
                     </label>
                 </div>
@@ -305,7 +317,7 @@
                 <div class="container">
                     <p class="buttonlabel_top">Artificial Lighting</p>
                     <label class="button_down">
-                        <button class="light_button normal_button" id="lighting">On</button>
+                        <button class="light_button normal_button" id="lighting" style="background-color: #808080;">Off</button>
                     </label>
                 </div>
                 <div class="container">
@@ -323,6 +335,11 @@
                 var labels = {{ chart_data['labels'] | tojson }};
                 var datas = {{ chart_data['data'] | tojson }};
                 var delay = {{ chart_data['delay'] | tojson }};
+
+                // label in form YYYY-MM-DD@HH:MM:SS to HH:MM:ss
+                for (var i = 0; i < labels.length; i++) {
+                    labels[i] = labels[i].slice(11, 19);
+                }
 
 
                 function get_24h(){
@@ -379,16 +396,6 @@
                     type: 'line',
                     data: chartData,
                     options: {
-                        // scales: {
-                        //     x: {
-                        //         type: "linear", // 使用线性刻度
-                        //         position: "bottom",
-                        //     },
-                        //     y: {
-                        //         type: "linear",
-                        //         position: "left",
-                        //     }
-                        // },
                         plugins: {
                             zoom: {
                                 pan: {
@@ -475,7 +482,7 @@
                             return response.json();
                         })
                         .then(function (data) {
-                            new_label = data.label;
+                            new_label = data.label.slice(11, 19);
                             new_data = data.data;
                             if (labels.includes(new_label)){
                                 return;
@@ -500,6 +507,9 @@
                         .then(function (data) {
                             labels = data.labels;
                             datas = data.datas;
+                            for (var i = 0; i < labels.length; i++) {
+                                labels[i] = labels[i].slice(11, 19);
+                            }
                         })
                         .catch(function (error) {
                             if (intervalId){
@@ -512,18 +522,12 @@
                 // if watering1 or watering2 or watering3 button is clicked
                 document.getElementById("watering1").onclick = function() {
                     watering(0);
-                    //alert
-                    alert("Watering 100ml");
                 };
                 document.getElementById("watering2").onclick = function() {
                     watering(1);
-                    //alert
-                    alert("Watering 250ml");
                 };
                 document.getElementById("watering3").onclick = function() {
                     watering(2);
-                    //alert
-                    alert("Watering 500ml");
                 };
 
                 function watering(limit){
@@ -542,11 +546,26 @@
                     if (document.getElementById("lighting").innerHTML == "On"){
                         document.getElementById("lighting").innerHTML = "Off";
                         document.getElementById("lighting").style.backgroundColor = "#808080";
-                        alert("Lighting Off")
+                        fetch("light_on_off")
+                            .then(function (response) {
+                                // console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            ;
+                        
                     }else{
                         document.getElementById("lighting").innerHTML = "On";
                         document.getElementById("lighting").style.backgroundColor = "#139487";
-                        alert("Lighting On")
+                        fetch("light_on_off")
+                            .then(function (response) {
+                                // console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            ;
                     }
                 };
 
@@ -605,6 +624,98 @@
                         position = Math.max(0, Math.min(1, position)); // Ensure position is between 0 and 1
                         thumb.style.left = (position * 100) + '%';
                     }
+
+
+                    // camera sensor
+                    camera_stat = setInterval(function () {
+                        // get vedio status
+                        fetch('/video_status')
+                            .then(function (response) {
+                                return response.json();
+                            })
+                            .then(function (data) {
+                                if (data.camera == "False"){
+                                    // show the live sign
+                                    document.getElementById("live_sign_vedio").style.display = "block";
+                                    // change the text to "Resume"
+                                    document.getElementById("live_sign_vedio").innerHTML = "🔴Live ";
+                                    document.getElementById("sensor_status").checked = true;
+                                }else{
+                                    // show the live sign
+                                    document.getElementById("live_sign_vedio").style.display = "block";
+                                    // change the text to "Pause"
+                                    document.getElementById("live_sign_vedio").innerHTML = "Pause";
+                                    document.getElementById("sensor_status").checked = false;
+                                }
+                                if (data.smart == "False"){
+                                    document.getElementById("smart").checked = false;
+                                }else{
+                                    document.getElementById("smart").checked = true;
+                                }
+                                if (data.light == "False"){
+                                    document.getElementById("lighting").innerHTML = "Off";
+                                    document.getElementById("lighting").style.backgroundColor = "#808080";
+                                }else{
+                                    document.getElementById("lighting").innerHTML = "On";
+                                    document.getElementById("lighting").style.backgroundColor = "#139487";
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                                clearInterval(camera_stat);
+                            })
+                            ;
+                        }, 3000); //3s
+
+                    // if sensor_status button is clicked
+                    document.getElementById("sensor_status").onclick = function() {
+                        if (document.getElementById("sensor_status").checked){
+                            // show the live sign
+                            document.getElementById("live_sign_vedio").style.display = "block";
+                            fetch('/video_resume')
+                                .then(function (response) {
+                                    // console.log(response);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                })
+                                ;
+                        }else{
+                            // show the live sign
+                            document.getElementById("live_sign_vedio").style.display = "none";
+                            fetch('/video_pause')
+                                .then(function (response) {
+                                    // console.log(response);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                })
+                                ;
+                        }
+                    };
+
+
+                    document.getElementById("smart").onclick = function() {
+                        fetch('/smart_on_off')
+                            .then(function (response) {
+                                // console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            ;
+                    }
+
+                    // if click humidity, hide or show humidity_div
+                    document.getElementById("humidity").onclick = function() {
+                        if (document.getElementById("humidity_div").style.display == "none"){
+                            document.getElementById("humidity_div").style.display = "block";
+                            document.getElementById("humidity").innerHTML = "Humidity ▲";
+                        }else{
+                            document.getElementById("humidity_div").style.display = "none";
+                            document.getElementById("humidity").innerHTML = "Humidity ▼";
+                        }
+                    };
                 });
         
                 
