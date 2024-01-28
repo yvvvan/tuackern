@@ -141,7 +141,7 @@ def save_data(delay=120):
 		with open('humidity_data_list.txt', 'a') as f:
 			for i in range(len(humidity_data_list_new)):
 				# write CURRENT TIME YYYY-MM-DD,HH:MM:SS,humidity
-				f.write(time.strftime("%Y-%m-%d,%H:%M:%S", time.localtime()) + ',' + str(humidity_data_list_new[i]) + '\n')
+				f.write(str(time_list_new[i]).replace("@",",") + ',' + str(humidity_data_list_new[i]) + '\n')
 		humidity_data_list_old += humidity_data_list_new
 		time_list_old += time_list_new
 		humidity_data_list_new = []
