@@ -291,7 +291,7 @@
     
             </div>
 
-            <hr
+            <hr>
             
 
             <div class="otherControl" >
@@ -542,7 +542,7 @@
                 };
 
                 function watering(limit){
-                    fetch('/watering')
+                    fetch('/watering/'+limit)
                         .then(function (response) {
                             // console.log(response);
                         })
