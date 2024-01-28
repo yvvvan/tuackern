@@ -9,6 +9,7 @@ int lightState = LOW;
 int waterState = LOW; 
 int smartState = LOW; 
 int currentMillis = millis();
+int waterLimit = 5000;
 
 void setup() {
   Serial.begin(9600);
@@ -26,13 +27,20 @@ void loop() {
         // handle the received char signal
         if (received == 'A') {
             light();
-        } else if (received == 'B') {
+        } else if (received == 'E' || received == 'F' || received == 'G') {
+            if (received == 'E') {
+                waterLimit = 5000;
+            } else if (received == 'F') {
+                waterLimit = 10000;
+            } else if (received == 'G') {
+                waterLimit = 20000;
+            }  
             waterStart(currentMillis);
         } else if (received == 'C') {
             smart();
         }
   }
-  if(waterState == HIGH && currentMillis - waterStartTimer > 5000){ 
+  if(waterState == HIGH && currentMillis - waterStartTimer > waterLimit){ 
     // after 5 seconds, turn off water
     waterStop();
   }

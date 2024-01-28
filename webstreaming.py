@@ -48,10 +48,17 @@ def index():
 	chart_data = {'labels': time_list_cut,'data': humidity_data_list_cut, 'delay': delay*1000}
 	return render_template('index.html', chart_data=chart_data)
 
-@app.route("/watering")
-def watering():
-	arduino.write("B".encode())
-	print('watering')
+@app.route("/watering/<int:lvl>")
+def watering(lvl):
+	if lvl == 0:
+		arduino.write("E".encode())
+		print('watering 0')
+	elif lvl == 1:
+		arduino.write("F".encode())
+		print('watering 1')
+	elif lvl == 2:
+		arduino.write("G".encode())
+		print('watering 2')
 	return 'watered'
 
 @app.route("/smart")
