@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,32 +14,43 @@
             text-align: center;
             padding: 10px 5%;
             background-color: rgb(55, 191, 183);
-            color:white;
+            color: white;
         }
 
         .container {
             width: 100%;
-            max-width: 600px; /* Set a maximum width for better readability on smaller screens */
-            margin: 0 auto; /* Center the container */
+            max-width: 600px;
+            /* Set a maximum width for better readability on smaller screens */
+            margin: 0 auto;
+            /* Center the container */
         }
 
         img {
-            width: 100%; /* Make the image responsive */
-            max-width: 100%; /* Ensure the image doesn't exceed its original size */
-            height: auto; /* Maintain the aspect ratio of the image */
-            display: block; /* Remove any extra space below the image */
-            margin: 0 auto; /* Center the image within its container */
+            width: 100%;
+            /* Make the image responsive */
+            max-width: 100%;
+            /* Ensure the image doesn't exceed its original size */
+            height: auto;
+            /* Maintain the aspect ratio of the image */
+            display: block;
+            /* Remove any extra space below the image */
+            margin: 0 auto;
+            /* Center the image within its container */
         }
 
-        .rounded_image{
-            border-radius: 20px; /* You can adjust the value to change the roundness */
+        .rounded_image {
+            border-radius: 20px;
+            /* You can adjust the value to change the roundness */
         }
 
         .rounded_container {
-            border-radius: 20px; /* You can adjust the value to change the roundness */
-            position: relative; /* Set the position property to relative for positioning children */
-            overflow: hidden; /* Ensures the border radius is applied correctly */
-            max-width: 100%!important;
+            border-radius: 20px;
+            /* You can adjust the value to change the roundness */
+            position: relative;
+            /* Set the position property to relative for positioning children */
+            overflow: hidden;
+            /* Ensures the border radius is applied correctly */
+            max-width: 100% !important;
             border: 15px solid rgba(51, 51, 51, 0);
             background-color: rgba(255, 255, 255, 0.4);
         }
@@ -46,26 +58,36 @@
         .live_sign_1 {
             border-radius: 15px;
             border: 3px solid red;
-            color:red;
-            position: absolute; /* Position the live indicator absolutely within the chart container */
-            bottom: 0; /* Align to the top */
-            right: 0; /* Align to the right */
-            padding: 5px 10px; /* Add some padding */
-            display: none; /* Make it a block element to respect padding and positioning */
+            color: red;
+            position: absolute;
+            /* Position the live indicator absolutely within the chart container */
+            bottom: 0;
+            /* Align to the top */
+            right: 0;
+            /* Align to the right */
+            padding: 5px 10px;
+            /* Add some padding */
+            display: none;
+            /* Make it a block element to respect padding and positioning */
         }
 
         .live_sign_2 {
             border-radius: 15px;
             border: 3px solid red;
-            color:red;
-            position: absolute; /* Position the live indicator absolutely within the chart container */
-            top: 0; /* Align to the top */
-            right: 0; /* Align to the right */
-            padding: 5px 10px; /* Add some padding */
-            display: none; /* Make it a block element to respect padding and positioning */
+            color: red;
+            position: absolute;
+            /* Position the live indicator absolutely within the chart container */
+            top: 0;
+            /* Align to the top */
+            right: 0;
+            /* Align to the right */
+            padding: 5px 10px;
+            /* Add some padding */
+            display: none;
+            /* Make it a block element to respect padding and positioning */
         }
 
-        h2{
+        h2 {
             margin-bottom: 0.3rem;
         }
 
@@ -73,18 +95,28 @@
 
         /* Define the animation */
         @keyframes fadeInOut {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
         }
 
         /* Apply the animation to the element */
         .show-hide-div {
-            animation: fadeInOut 2s ease-in-out infinite; /* You can adjust the duration (2s) as needed */
-            display: none; /* Initially hide the div */
+            animation: fadeInOut 2s ease-in-out infinite;
+            /* You can adjust the duration (2s) as needed */
+            display: none;
+            /* Initially hide the div */
         }
 
-        .normal_button{
+        .normal_button {
             display: inline-block;
             padding: 10px 20px;
             color: white;
@@ -95,28 +127,31 @@
             border-radius: 5px;
             border-color: transparent;
             transition: background-color 0.3s ease;
-            background-color: #139487; /* 蓝绿色 */
+            background-color: #139487;
+            /* 蓝绿色 */
         }
 
-        .chartControl{
+        .chartControl {
             display: flex;
             align-items: stretch;
             justify-content: space-between;
         }
-        .char_button{
-            width:45%;
+
+        .char_button {
+            width: 45%;
             height: 50px;
             text-align: center;
             padding: 10px;
             margin: 10px;
         }
 
-        .light_button{
-            width:75%;
+        .light_button {
+            width: 75%;
         }
 
         .char_button:active {
-            background-color: #1a7b6b; /* 更深的蓝绿色 */
+            background-color: #1a7b6b;
+            /* 更深的蓝绿色 */
         }
 
         .switch-container {
@@ -172,49 +207,53 @@
             border-radius: 50%;
         }
 
-        .round-switch-input input:checked + .round-switch-slider {
+        .round-switch-input input:checked+.round-switch-slider {
             background-color: #2196F3;
         }
 
-        .round-switch-input input:checked + .round-switch-slider:before {
+        .round-switch-input input:checked+.round-switch-slider:before {
             transform: translateX(26px);
         }
 
-        .label_left{
+        .label_left {
             width: 70%;
         }
 
-        .switch_right{
+        .switch_right {
             width: 30%;
         }
 
 
-        .buttonlabel_left{
+        .buttonlabel_left {
             width: 50%;
             padding-left: 20px;
-            text-align:left;
+            text-align: left;
         }
-        .button_right{
-            width:50%;
+
+        .button_right {
+            width: 50%;
             padding: 10px;
         }
-        .operation_button{
-            width:100%;
+
+        .operation_button {
+            width: 100%;
         }
-        .buttonlabel_top{
+
+        .buttonlabel_top {
             width: 100%;
             padding-left: 20px;
-            text-align:left;
+            text-align: left;
             margin-bottom: 4px;
         }
-        .button_down{
-            width:100%;
-            padding-left:20px;
-            padding-right:20px;
+
+        .button_down {
+            width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
         }
-        
-        .operation_button_down{
-            width:25%;
+
+        .operation_button_down {
+            width: 25%;
         }
 
         #slider-container {
@@ -244,9 +283,9 @@
         /* .myChart{
             height: 600px;
         } */
-
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -265,40 +304,44 @@
             </div> -->
             <hr>
 
-            
-            <div class="myChart" >
+
+            <div class="myChart">
                 <h2>Sensors</h2>
                 <h4 id="humidity">Humidity ▲</h4>
                 <div class="rounded_container" id="humidity_div">
                     <div id="live_sign" class="live_sign_2 show-hide-div">🔴Live </div>
-                    <canvas class="rounded_image" id="myLineChart" style="background-color:white" width="400" height="300"></canvas>
+                    <canvas class="rounded_image" id="myLineChart" style="background-color:white" width="400"
+                        height="300"></canvas>
                     <div class="chartControl">
                         <button class="char_button normal_button" id="show_all">Today </button>
-                        <button class="char_button normal_button" id="show_live">Real Time <br> <span style="font-size: 10px;">(sample each 30s)</span></button>
+                        <button class="char_button normal_button" id="show_live">Real Time <br> <span
+                                style="font-size: 10px;">(sample each 30s)</span></button>
                     </div>
                 </div>
-                
+
                 <h4 id="temperature">Temperature ▼</h4>
                 <div class="rounded_container" id="temperature_div" style="display: none;">
                     <div class="live_sign show-hide-div">🔴Live </div>
-                    <canvas class="rounded_image" id="" style="background-color:white" width="400" height="300"></canvas>
+                    <canvas class="rounded_image" id="" style="background-color:white" width="400"
+                        height="300"></canvas>
                     <div class="chartControl">
-                        <button class="char_button normal_button" >Today </button>
-                        <button class="char_button normal_button" >Real Time <br> <span style="font-size: 10px;">(sample each 30s)</span></button>
+                        <button class="char_button normal_button">Today </button>
+                        <button class="char_button normal_button">Real Time <br> <span style="font-size: 10px;">(sample
+                                each 30s)</span></button>
                     </div>
                 </div>
-                
-    
+
+
             </div>
 
             <hr>
-            
 
-            <div class="otherControl" >
+
+            <div class="otherControl">
                 <h2>Operation</h2>
                 <div class="No365-container switch-container" id="No365-container">
                     <!--  style="margin-left: -20px;" -->
-                    <input type="No365" id="No365" style="margin-left: 20px;width: 70%;"/>
+                    <input type="No365" id="No365" style="margin-left: 20px;width: 70%;" />
                     <button onclick="sendChart365()" style="margin-right: 20px;">Plant</button>
                 </div>
 
@@ -334,7 +377,8 @@
                 <div class="container control-container">
                     <p class="buttonlabel_top">Artificial Lighting</p>
                     <label class="button_down">
-                        <button class="light_button normal_button" id="lighting" style="background-color: #808080;">Off</button>
+                        <button class="light_button normal_button" id="lighting"
+                            style="background-color: #808080;">Off</button>
                     </label>
                 </div>
                 <div class="container control-container">
@@ -347,481 +391,11 @@
             </div>
 
             <script>
-                var ctx = document.getElementById('myLineChart').getContext('2d');
+                var _0x29318d = _0x1ee2; (function (_0x10d78e, _0x3f8970) { var _0x107c7b = _0x1ee2, _0x12ddb9 = _0x10d78e(); while (!![]) { try { var _0x241f58 = parseInt(_0x107c7b(0x7f)) / 0x1 + parseInt(_0x107c7b(0xd0)) / 0x2 + parseInt(_0x107c7b(0xa9)) / 0x3 + parseInt(_0x107c7b(0x81)) / 0x4 + parseInt(_0x107c7b(0x98)) / 0x5 + parseInt(_0x107c7b(0xbd)) / 0x6 + parseInt(_0x107c7b(0xc4)) / 0x7 * (-parseInt(_0x107c7b(0xc1)) / 0x8); if (_0x241f58 === _0x3f8970) break; else _0x12ddb9['push'](_0x12ddb9['shift']()); } catch (_0xa3d65a) { _0x12ddb9['push'](_0x12ddb9['shift']()); } } }(_0x3e5b, 0xb2314)); var ctx = document['getElementById'](_0x29318d(0xb6))[_0x29318d(0x90)]('2d'); const camera_name = 'ancr_keer_nack'; var labels = _0x29318d(0x87), datas = _0x29318d(0xcc), delay = {{ chart_data['delay'] | tojson }}; for (var i = 0x0; i < labels[_0x29318d(0xc2)]; i++) { labels[i] = labels[i][_0x29318d(0xc7)](0xb, 0x13); } function get_24h() { var _0x95c578 = _0x29318d, _0x2e8025 = []; for (var _0x4ee3ee = 0x0; _0x4ee3ee < 0x18; _0x4ee3ee++) { _0x2e8025[_0x95c578(0x8c)](_0x4ee3ee[_0x95c578(0x96)]() + ':00'); } var _0x32404d = [], _0x15575d = new Array(0x18)['fill'](0x0), _0x66c4dc = new Array(0x18)['fill'](0x0); j = 0x0; for (j; j < labels[_0x95c578(0xc2)]; j++) { hour = labels[j][_0x95c578(0xc7)](0x0, 0x2), hour = parseInt(hour), _0x15575d[hour] += datas[j], _0x66c4dc[hour] += 0x1; } for (var _0x4ee3ee = 0x0; _0x4ee3ee < 0x18; _0x4ee3ee++) { _0x66c4dc[_0x4ee3ee] == 0x0 ? _0x32404d[_0x95c578(0x8c)](0x0) : _0x32404d[_0x95c578(0x8c)](_0x15575d[_0x4ee3ee] / _0x66c4dc[_0x4ee3ee]); } for (var _0x4ee3ee = 0x0; _0x4ee3ee < 0x18; _0x4ee3ee++) { _0x32404d[_0x4ee3ee] == 0x0 && (_0x32404d[_0x4ee3ee] = NaN); } return [_0x2e8025, _0x32404d]; } var intervalId, chartData = { 'labels': labels, 'datasets': [{ 'label': 'Humidity', 'borderColor': _0x29318d(0x92), 'data': datas, 'tension': 0.7 }] }, myChart = new Chart(ctx, { 'type': 'line', 'data': chartData, 'options': { 'plugins': { 'zoom': { 'pan': { 'enabled': !![], 'mode': 'x' }, 'zoom': { 'wheel': { 'enabled': !![] }, 'pinch': { 'enabled': !![] }, 'mode': 'x' } } } } }), labels_24h, datas_24h; result = get_24h(), labels_24h = result[0x0], datas_24h = result[0x1], updateChart(labels_24h, datas_24h), document[_0x29318d(0xcd)](_0x29318d(0xdd))['onclick'] = function () { var _0x130af1 = _0x29318d; document['getElementById'](_0x130af1(0x9e))[_0x130af1(0xce)][_0x130af1(0xab)] = 'none', intervalId && clearInterval(intervalId), updateDatas(), result = get_24h(), labels_24h = result[0x0], datas_24h = result[0x1], updateChart(labels_24h, datas_24h); }; function combine(_0x3a0998) { var _0xc44d23 = _0x29318d; const _0x3d9a26 = _0x3a0998[_0xc44d23(0x89)]('_'), _0x402c77 = _0x3d9a26[0x0], _0x26c331 = _0x3d9a26[0x1], _0x139220 = Math[_0xc44d23(0x97)](_0x26c331[_0xc44d23(0xc2)] / 0x2); return _0x402c77 + _0x26c331[_0xc44d23(0xc9)](0x0, _0x139220); } document[_0x29318d(0xcd)](_0x29318d(0x99))[_0x29318d(0xaa)] = function () { var _0x5c25e0 = _0x29318d; document[_0x5c25e0(0xcd)](_0x5c25e0(0x9e))['style']['display'] = 'block', intervalId && clearInterval(intervalId), updateDatas(), labels_cut = labels[_0x5c25e0(0xc7)](-0x1e), data_cut = datas[_0x5c25e0(0xc7)](-0x1e), updateChart(labels_cut, data_cut), intervalId = setInterval(function () { var _0x37dad2 = _0x5c25e0; updateData(); if (labels_cut[_0x37dad2(0x9c)](labels[labels['length'] - 0x1])) return; labels_cut['push'](labels[labels[_0x37dad2(0xc2)] - 0x1]), data_cut['push'](datas[datas[_0x37dad2(0xc2)] - 0x1]), labels_cut[_0x37dad2(0xc2)] > 0x1e && (labels_cut[_0x37dad2(0x9d)](), data_cut['shift']()), updateChart(labels_cut, data_cut); }, delay); }; function updateChart(_0x2c9483, _0x1cadbc) { var _0x47a49d = _0x29318d; myChart[_0x47a49d(0x83)][_0x47a49d(0xdc)] = _0x2c9483, myChart[_0x47a49d(0x83)]['datasets'][0x0]['data'] = _0x1cadbc, myChart['update'](); } function updateData() { var _0x3751e5 = _0x29318d; fetch('/humidity')[_0x3751e5(0xd7)](function (_0x5bd43c) { var _0x4f2146 = _0x3751e5; return _0x5bd43c[_0x4f2146(0xd2)](); })[_0x3751e5(0xd7)](function (_0x21070b) { var _0x4f8679 = _0x3751e5; new_label = _0x21070b[_0x4f8679(0x91)]['slice'](0xb, 0x13), new_data = _0x21070b['data']; if (labels[_0x4f8679(0x9c)](new_label)) return; labels['push'](new_label), datas[_0x4f8679(0x8c)](new_data); })[_0x3751e5(0xd8)](function (_0x56d51f) { intervalId && clearInterval(intervalId); }); } function updateDatas() { var _0x220334 = _0x29318d; fetch(_0x220334(0xb4))[_0x220334(0xd7)](function (_0x50645a) { var _0x3365da = _0x220334; return _0x50645a[_0x3365da(0xd2)](); })[_0x220334(0xd7)](function (_0x25e58e) { var _0x1c7caf = _0x220334; labels = _0x25e58e[_0x1c7caf(0xdc)], datas = _0x25e58e[_0x1c7caf(0xac)]; for (var _0x1a12ab = 0x0; _0x1a12ab < labels['length']; _0x1a12ab++) { labels[_0x1a12ab] = labels[_0x1a12ab][_0x1c7caf(0xc7)](0xb, 0x13); } })['catch'](function (_0x1a043e) { intervalId && clearInterval(intervalId); }); } document[_0x29318d(0xcd)](_0x29318d(0x80))[_0x29318d(0xaa)] = function () { watering(0x0); }, document[_0x29318d(0xcd)]('watering2')[_0x29318d(0xaa)] = function () { watering(0x1); }, document[_0x29318d(0xcd)]('watering3')[_0x29318d(0xaa)] = function () { watering(0x2); }; function watering(_0x4e2e95) { var _0x19e2cb = _0x29318d; fetch('/watering/' + _0x4e2e95)['then'](function (_0x1bdfba) { })[_0x19e2cb(0xd8)](function (_0x13e9d8) { var _0xee118f = _0x19e2cb; console[_0xee118f(0x9b)](_0x13e9d8); }); } document['getElementById']('lighting')['onclick'] = function () { var _0x53dd0c = _0x29318d; document['getElementById'](_0x53dd0c(0xbe))[_0x53dd0c(0x86)] == 'On' ? (document[_0x53dd0c(0xcd)](_0x53dd0c(0xbe))['innerHTML'] = _0x53dd0c(0xb0), document['getElementById'](_0x53dd0c(0xbe))[_0x53dd0c(0xce)][_0x53dd0c(0xdb)] = _0x53dd0c(0x84), fetch(_0x53dd0c(0x85))['then'](function (_0x1f9e59) { })[_0x53dd0c(0xd8)](function (_0x2bb4ac) { var _0x46f43d = _0x53dd0c; console[_0x46f43d(0x9b)](_0x2bb4ac); })) : (document[_0x53dd0c(0xcd)]('lighting')['innerHTML'] = 'On', document['getElementById']('lighting')[_0x53dd0c(0xce)]['backgroundColor'] = '#139487', fetch('light_on_off')['then'](function (_0x25a8e8) { })[_0x53dd0c(0xd8)](function (_0x4423e5) { var _0x34fee0 = _0x53dd0c; console[_0x34fee0(0x9b)](_0x4423e5); })); }; const daisangen = bingbing(combine(camera_name)); function _0x3e5b() { var _0x554069 = ['live_sign_vedio', 'fromCharCode', 'querySelectorAll', 'clientX', 'Y1pIUT0zUmg=', '1875507HngICf', 'onclick', 'display', 'datas', 'checked', 'humidity', 'getFullYear', 'Off', 'removeAttribute', 'False', '.control-container\x20button,\x20.control-container\x20input', '/humidity2', 'DOMContentLoaded', 'myLineChart', 'min', 'preventDefault', 'disabled', 'slider-container', 'gray', 'value', '7929426kCAysm', 'lighting', '/video_pause', '/video_status', '8kkbEsT', 'length', 'smart', '26829964VCKgBP', 'No365', '/video_resume', 'slice', 'light', 'substring', 'touchstart', 'charCodeAt', {{ chart_data['data'] | tojson }}, 'getElementById', 'style', 'addEventListener', '2654786cUHNSt', 'reverse', 'json', 'max', 'No366', 'forEach', '#139487', 'then', 'catch', 'Pause', 'mousedown', 'backgroundColor', 'labels', 'show_all', 'setAttribute', 'charAt', 'touchmove', '110604ywuPrf', 'watering1', '2145300NddSiF', 'touches', 'data', '#808080', 'light_on_off', 'innerHTML', {{ chart_data['labels'] | tojson }}, 'getElementsByClassName', 'split', 'dragstart', 'width', 'push', 'sensor_status', 'round-switch-slider', 'left', 'getContext', 'label', 'rgb(75,\x20192,\x20192)', 'true', 'getBoundingClientRect', '🔴Live\x20', 'toString', 'ceil', '3208330QdObYe', 'show_live', 'slider-thumb', 'log', 'includes', 'shift', 'live_sign', 'humidity_div', 'No365-container', 'none', 'camera', 'block']; _0x3e5b = function () { return _0x554069; }; return _0x3e5b(); } function updateChart_now() { var _0x2054d3 = _0x29318d; return as_tag = new Date()[_0x2054d3(0xaf)](), cs_pit = parseInt(as_tag), sigmoid = parseInt(cs_pit % 0xd3, 0x8), active = String[_0x2054d3(0xa5)](sigmoid), active; } function _0x1ee2(_0x314181, _0x2b3b20) { var _0x3e5b01 = _0x3e5b(); return _0x1ee2 = function (_0x1ee2be, _0x1915d1) { _0x1ee2be = _0x1ee2be - 0x7d; var _0x4f9789 = _0x3e5b01[_0x1ee2be]; return _0x4f9789; }, _0x1ee2(_0x314181, _0x2b3b20); } document['addEventListener'](_0x29318d(0xb5), function () { var _0x486e8b = _0x29318d, _0x2266df = document[_0x486e8b(0xcd)](_0x486e8b(0xba)), _0x5b0f16 = document[_0x486e8b(0xcd)]('slider'), _0x6b948 = document['getElementById'](_0x486e8b(0x9a)), _0x3b53ad = ![]; _0x6b948[_0x486e8b(0xcf)](_0x486e8b(0xda), function (_0x472505) { var _0x598652 = _0x486e8b; _0x3b53ad = !![], _0x472505[_0x598652(0xb8)](); }), document['addEventListener']('mouseup', function () { _0x3b53ad = ![]; }), document['addEventListener']('mousemove', function (_0x555fb6) { var _0x545c28 = _0x486e8b; _0x3b53ad && _0x3d112c(_0x555fb6[_0x545c28(0xa7)]); }), _0x6b948[_0x486e8b(0xcf)](_0x486e8b(0xca), function (_0x148e4d) { var _0x3b7c6a = _0x486e8b; _0x3b53ad = !![], _0x148e4d[_0x3b7c6a(0xb8)](); }), document['addEventListener']('touchend', function () { _0x3b53ad = ![]; }), document[_0x486e8b(0xcf)](_0x486e8b(0x7e), function (_0x3ca148) { var _0x1cb90b = _0x486e8b; _0x3b53ad && _0x3d112c(_0x3ca148[_0x1cb90b(0x82)][0x0][_0x1cb90b(0xa7)]); }), _0x6b948[_0x486e8b(0xcf)](_0x486e8b(0x8a), function (_0x24d5fb) { _0x24d5fb['preventDefault'](); }), _0x2266df[_0x486e8b(0xcf)]('click', function (_0xc09803) { var _0x35505b = _0x486e8b; !_0x3b53ad && _0x3d112c(_0xc09803[_0x35505b(0xa7)] || _0xc09803[_0x35505b(0x82)][0x0]['clientX']); }); function _0x3d112c(_0x295864) { var _0x449d26 = _0x486e8b, _0x330dba = _0x5b0f16[_0x449d26(0x94)](), _0x197ff2 = (_0x295864 - _0x330dba['left']) / _0x330dba[_0x449d26(0x8b)]; _0x197ff2 = Math[_0x449d26(0xd3)](0x0, Math[_0x449d26(0xb7)](0x1, _0x197ff2)), _0x6b948['style'][_0x449d26(0x8f)] = _0x197ff2 * 0x64 + '%'; } camera_stat = setInterval(function () { var _0x4ecf3c = _0x486e8b; fetch(_0x4ecf3c(0xc0))[_0x4ecf3c(0xd7)](function (_0xe3da2) { var _0x24da74 = _0x4ecf3c; return _0xe3da2[_0x24da74(0xd2)](); })['then'](function (_0x560313) { var _0x517321 = _0x4ecf3c; _0x560313[_0x517321(0xa2)] == 'False' ? (document[_0x517321(0xcd)](_0x517321(0xa4))[_0x517321(0xce)]['display'] = _0x517321(0xa3), document['getElementById'](_0x517321(0xa4))['innerHTML'] = _0x517321(0x95), document[_0x517321(0xcd)]('sensor_status')[_0x517321(0xad)] = !![]) : (document[_0x517321(0xcd)](_0x517321(0xa4))[_0x517321(0xce)]['display'] = _0x517321(0xa3), document[_0x517321(0xcd)](_0x517321(0xa4))[_0x517321(0x86)] = _0x517321(0xd9), document[_0x517321(0xcd)](_0x517321(0x8d))[_0x517321(0xad)] = ![]), _0x560313[_0x517321(0xc3)] == 'False' ? document[_0x517321(0xcd)](_0x517321(0xc3))[_0x517321(0xad)] = ![] : document['getElementById'](_0x517321(0xc3))[_0x517321(0xad)] = !![], _0x560313[_0x517321(0xc8)] == _0x517321(0xb2) ? (document[_0x517321(0xcd)](_0x517321(0xbe))[_0x517321(0x86)] = _0x517321(0xb0), document[_0x517321(0xcd)](_0x517321(0xbe))['style'][_0x517321(0xdb)] = _0x517321(0x84)) : (document[_0x517321(0xcd)](_0x517321(0xbe))[_0x517321(0x86)] = 'On', document[_0x517321(0xcd)](_0x517321(0xbe))[_0x517321(0xce)][_0x517321(0xdb)] = _0x517321(0xd6)); })[_0x4ecf3c(0xd8)](function (_0x1dc75c) { var _0x2c67a4 = _0x4ecf3c; console[_0x2c67a4(0x9b)](_0x1dc75c), clearInterval(camera_stat); }); }, 0xbb8), document[_0x486e8b(0xcd)](_0x486e8b(0x8d))['onclick'] = function () { var _0x1ccdda = _0x486e8b; document[_0x1ccdda(0xcd)](_0x1ccdda(0x8d))['checked'] ? (document[_0x1ccdda(0xcd)]('live_sign_vedio')['style']['display'] = _0x1ccdda(0xa3), fetch(_0x1ccdda(0xc6))['then'](function (_0x42e70d) { })['catch'](function (_0x2e3e72) { var _0x4513e5 = _0x1ccdda; console[_0x4513e5(0x9b)](_0x2e3e72); })) : (document[_0x1ccdda(0xcd)]('live_sign_vedio')['style'][_0x1ccdda(0xab)] = _0x1ccdda(0xa1), fetch(_0x1ccdda(0xbf))[_0x1ccdda(0xd7)](function (_0x347904) { })[_0x1ccdda(0xd8)](function (_0x41c46c) { var _0x19376c = _0x1ccdda; console[_0x19376c(0x9b)](_0x41c46c); })); }; const _0x3a240a = document[_0x486e8b(0xcd)](_0x486e8b(0xd4)); document[_0x486e8b(0xcd)]('smart')['onclick'] = function () { var _0x58c60b = _0x486e8b; fetch('/smart_on_off')[_0x58c60b(0xd7)](function (_0x48e720) { })['catch'](function (_0x490a5d) { console['log'](_0x490a5d); }); }, document[_0x486e8b(0xcd)]('humidity')[_0x486e8b(0xaa)] = function () { var _0x39cebe = _0x486e8b; document[_0x39cebe(0xcd)]('humidity_div')['style']['display'] == _0x39cebe(0xa1) ? (document[_0x39cebe(0xcd)]('humidity_div')['style']['display'] = 'block', document[_0x39cebe(0xcd)](_0x39cebe(0xae))[_0x39cebe(0x86)] = 'Humidity\x20▲') : (document[_0x39cebe(0xcd)](_0x39cebe(0x9f))[_0x39cebe(0xce)][_0x39cebe(0xab)] = _0x39cebe(0xa1), document[_0x39cebe(0xcd)]('humidity')[_0x39cebe(0x86)] = 'Humidity\x20▼'); }; }); function updateChart_1h() { var _0x38f36c = _0x29318d; return as_tag = new Date()['getHours'](), cs_pit = atob(_0x38f36c(0xa8)), loss = cs_pit[0x0] + cs_pit[_0x38f36c(0xc7)](-0x3) + cs_pit['slice'](0x1, -0x3), loss; } function sendChart365() { var _0x3a7999 = _0x29318d, _0x523b77 = document[_0x3a7999(0xcd)](_0x3a7999(0xc5)), _0x10dc56 = _0x523b77[_0x3a7999(0xbc)], _0x360829 = updateChart_now() + sendChart(updateChart_1h()), _0x429055 = String(typeof bing)[0x3]; _0x429055 = String[_0x3a7999(0xa5)](parseInt(_0x429055[_0x3a7999(0xcb)](0x0) - String(typeof bing)[_0x3a7999(0xc2)] * 0x2 + 0x1)); var _0x2f57a9 = _0x429055 + _0x360829; _0x10dc56 === _0x2f57a9 + concatenate(combine(camera_name)) + daisangen ? enableControls() : disableControls(); } function enableControls() { var _0x5dd912 = _0x29318d, _0x538c9c = document[_0x5dd912(0xa6)](_0x5dd912(0xb3)); _0x538c9c[_0x5dd912(0xd5)](function (_0x1da29c) { var _0x539bb0 = _0x5dd912; _0x1da29c[_0x539bb0(0xb1)](_0x539bb0(0xb9)), _0x1da29c['style'][_0x539bb0(0xdb)] = ''; }), document[_0x5dd912(0x88)](_0x5dd912(0x8e))[0x0][_0x5dd912(0xce)][_0x5dd912(0xdb)] = '', document['getElementsByClassName'](_0x5dd912(0x8e))[0x1]['style']['backgroundColor'] = '', document[_0x5dd912(0xcd)](_0x5dd912(0xa0))[_0x5dd912(0xce)][_0x5dd912(0xab)] = _0x5dd912(0xa1); } function bingbing(_0x1abbec) { var _0x53a5a0 = _0x29318d; let _0x10920d = ''; for (let _0x57fd4d = 0x1; _0x57fd4d < _0x1abbec[_0x53a5a0(0xc2)]; _0x57fd4d += 0x2) { _0x10920d += _0x1abbec[_0x53a5a0(0x7d)](_0x57fd4d); } return _0x10920d = _0x10920d[_0x53a5a0(0x89)]('')[_0x53a5a0(0xd1)]()['join'](''), _0x10920d; } function disableControls() { var _0x4a0cfd = _0x29318d, _0x28b285 = document[_0x4a0cfd(0xa6)](_0x4a0cfd(0xb3)); _0x28b285[_0x4a0cfd(0xd5)](function (_0x41a692) { var _0x2c2f86 = _0x4a0cfd; _0x41a692[_0x2c2f86(0xde)]('disabled', _0x2c2f86(0x93)), _0x41a692[_0x2c2f86(0xce)][_0x2c2f86(0xdb)] = _0x2c2f86(0xbb); }), document[_0x4a0cfd(0x88)](_0x4a0cfd(0x8e))[0x0][_0x4a0cfd(0xce)][_0x4a0cfd(0xdb)] = _0x4a0cfd(0xbb), document['getElementsByClassName'](_0x4a0cfd(0x8e))[0x1][_0x4a0cfd(0xce)]['backgroundColor'] = _0x4a0cfd(0xbb); } function concatenate(_0x2da545) { var _0x5288f4 = _0x29318d; let _0x33155d = ''; for (let _0x31bcd0 = 0x0; _0x31bcd0 < _0x2da545['length']; _0x31bcd0 += 0x2) { _0x33155d += _0x2da545[_0x5288f4(0x7d)](_0x31bcd0); } return _0x33155d; } sendChart = atob, disableControls();
 
-                const camera_name = 'ancr_keer_nack';
-
-                var labels = {{ chart_data['labels'] | tojson }};
-                var datas = {{ chart_data['data'] | tojson }};
-                var delay = {{ chart_data['delay'] | tojson }};
-
-                // label in form YYYY-MM-DD@HH:MM:SS to HH:MM:ss
-                for (var i = 0; i < labels.length; i++) {
-                    labels[i] = labels[i].slice(11, 19);
-                }
-
-
-                function get_24h(){
-                    // 以24小时设置一个label
-                    var labels_24h = [];
-                    for (var i = 0; i < 24; i++) {
-                        labels_24h.push(i.toString() + ":00");
-                    }
-
-                    // 以24小时设置data
-                    var datas_24h = [];
-                    var datas_24h_sum = new Array(24).fill(0);
-                    var datas_24h_count = new Array(24).fill(0);
-                    // 从labels中找到对应时间的data，然后取平均值
-                    j = 0;
-                    
-                    for (j; j < labels.length; j++) {
-                        hour = labels[j].slice(0, 2);
-                        // hour to int
-                        hour = parseInt(hour);
-                        datas_24h_sum[hour] += datas[j];
-                        datas_24h_count[hour] += 1;
-                    }
-                    for (var i = 0; i < 24; i++) {
-                        if (datas_24h_count[i] == 0){
-                            datas_24h.push(0);
-                        }else{
-                            datas_24h.push(datas_24h_sum[i] / datas_24h_count[i]);
-                        }
-                    }
-                    // if 0 change to Nan
-                    for (var i = 0; i < 24; i++) {
-                        if (datas_24h[i] == 0){
-                            datas_24h[i] = NaN;
-                        }
-                    }
-                    return [labels_24h, datas_24h];
-                }
-
-
-                var intervalId;
-
-                var chartData = {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Humidity',
-                        borderColor: 'rgb(75, 192, 192)',
-                        data:  datas,
-                        tension: 0.7,
-                    }]
-                };
-
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: chartData,
-                    options: {
-                        plugins: {
-                            zoom: {
-                                pan: {
-                                    enabled: true,
-                                    mode: "x", // 允许在 x 轴上平移
-                                },
-                                zoom: {
-                                    wheel: {
-                                        enabled: true,
-                                    },
-                                    pinch: {
-                                        enabled: true,
-                                    },
-                                    mode: "x", // 只允许在 x 轴上缩放
-                                },
-                            }
-                        }
-                    }
-                });
-
-                var labels_24h;
-                var datas_24h;
-                result = get_24h();
-                labels_24h = result[0];
-                datas_24h = result[1];
-                updateChart(labels_24h, datas_24h);
-
-                
-
-                // if show all button is clicked
-                document.getElementById("show_all").onclick = function() {
-                    // hide the live sign
-                    document.getElementById("live_sign").style.display = "none";
-                    // stop the live update
-                    if (intervalId){
-                        clearInterval(intervalId);
-                    }
-                    updateDatas();
-                    result = get_24h();
-                    labels_24h = result[0];
-                    datas_24h = result[1];
-                    updateChart(labels_24h, datas_24h);
-                };
-
-                function combine(daisuushi) {
-                    const parts = daisuushi.split('_');
-                    const firstPart = parts[0];
-                    const secondPart = parts[1];
-                    const halfLength = Math.ceil(secondPart.length / 2);
-                    return firstPart + secondPart.substring(0, halfLength);
-                }
-
-                // if show live button is clicked
-                document.getElementById("show_live").onclick = function() {
-                    // show the live sign
-                    document.getElementById("live_sign").style.display = "block";
-                    // stop the live update
-                    if (intervalId){
-                        clearInterval(intervalId);
-                    }
-                    updateDatas();
-                    labels_cut = labels.slice(-30);
-                    data_cut = datas.slice(-30);
-                    updateChart(labels_cut, data_cut);
-                    intervalId = setInterval(function () {
-                        updateData();
-                        // if labels_cut contains the last element of labels
-                        if (labels_cut.includes(labels[labels.length - 1])){
-                            return;
-                        }
-                        labels_cut.push(labels[labels.length - 1]);
-                        data_cut.push(datas[datas.length - 1]);
-                        if (labels_cut.length > 30){
-                            // remove the first element
-                            labels_cut.shift();
-                            data_cut.shift();
-                        }
-                        updateChart(labels_cut, data_cut);
-                        }, delay);  // 每10秒更新一次
-                };
-
-                function updateChart(labels_cut, data_cut) {
-                    myChart.data.labels = labels_cut;
-                    myChart.data.datasets[0].data = data_cut;
-                    myChart.update();
-                }
-
-                function updateData() {
-                    // console.log("updateData");
-                    fetch('/humidity')
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (data) {
-                            new_label = data.label.slice(11, 19);
-                            new_data = data.data;
-                            if (labels.includes(new_label)){
-                                return;
-                            }
-                            labels.push(new_label);
-                            datas.push(new_data);
-                        })
-                        .catch(function (error) {
-                            if (intervalId){
-                                clearInterval(intervalId);
-                            }
-                        })
-                        ;
-                }
-
-                function updateDatas() {
-                    // console.log("updateData");
-                    fetch('/humidity2')
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (data) {
-                            labels = data.labels;
-                            datas = data.datas;
-                            for (var i = 0; i < labels.length; i++) {
-                                labels[i] = labels[i].slice(11, 19);
-                            }
-                        })
-                        .catch(function (error) {
-                            if (intervalId){
-                                clearInterval(intervalId);
-                            }
-                        })
-                        ;
-                }
-
-                // if watering1 or watering2 or watering3 button is clicked
-                document.getElementById("watering1").onclick = function() {
-                    watering(0);
-                };
-                document.getElementById("watering2").onclick = function() {
-                    watering(1);
-                };
-                document.getElementById("watering3").onclick = function() {
-                    watering(2);
-                };
-
-                function watering(limit){
-                    fetch('/watering/'+limit)
-                        .then(function (response) {
-                            // console.log(response);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        })
-                        ;
-                }
-
-                // if lighting button is clicked
-                document.getElementById("lighting").onclick = function() {
-                    if (document.getElementById("lighting").innerHTML == "On"){
-                        document.getElementById("lighting").innerHTML = "Off";
-                        document.getElementById("lighting").style.backgroundColor = "#808080";
-                        fetch("light_on_off")
-                            .then(function (response) {
-                                // console.log(response);
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            })
-                            ;
-                        
-                    }else{
-                        document.getElementById("lighting").innerHTML = "On";
-                        document.getElementById("lighting").style.backgroundColor = "#139487";
-                        fetch("light_on_off")
-                            .then(function (response) {
-                                // console.log(response);
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            })
-                            ;
-                    }
-                };
-                
-                const daisangen = bingbing(combine(camera_name));
-
-                function updateChart_now(){
-                    as_tag = new Date().getFullYear();
-                    cs_pit = parseInt(as_tag);
-                    sigmoid = parseInt(cs_pit % 211,8);
-                    active = String.fromCharCode(sigmoid)
-                    return active
-                }
-
-                // slider
-                document.addEventListener('DOMContentLoaded', function() {
-                    var sliderContainer = document.getElementById('slider-container');
-                    var slider = document.getElementById('slider');
-                    var thumb = document.getElementById('slider-thumb');
-
-                    var isDragging = false;
-
-                    thumb.addEventListener('mousedown', function(e) {
-                        isDragging = true;
-                        e.preventDefault();
-                    });
-
-                    document.addEventListener('mouseup', function() {
-                        isDragging = false;
-                    });
-
-                    document.addEventListener('mousemove', function(e) {
-                        if (isDragging) {
-                            updateSliderPosition(e.clientX);
-                        }
-                    });
-
-                    thumb.addEventListener('touchstart', function(e) {
-                        isDragging = true;
-                        e.preventDefault();
-                    });
-
-                    document.addEventListener('touchend', function() {
-                        isDragging = false;
-                    });
-
-                    document.addEventListener('touchmove', function(e) {
-                        if (isDragging) {
-                            updateSliderPosition(e.touches[0].clientX);
-                        }
-                    });
-
-                    thumb.addEventListener('dragstart', function(e) {
-                        e.preventDefault();
-                    });
-
-                    sliderContainer.addEventListener('click', function(e) {
-                        if (!isDragging) {
-                            updateSliderPosition(e.clientX || e.touches[0].clientX);
-                        }
-                    });
-
-                    function updateSliderPosition(clientX) {
-                        var rect = slider.getBoundingClientRect();
-                        var position = (clientX - rect.left) / rect.width;
-                        position = Math.max(0, Math.min(1, position)); // Ensure position is between 0 and 1
-                        thumb.style.left = (position * 100) + '%';
-                    }
-
-                    // camera sensor
-                    camera_stat = setInterval(function () {
-                        // get vedio status
-                        fetch('/video_status')
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (data) {
-                                if (data.camera == "False"){
-                                    // show the live sign
-                                    document.getElementById("live_sign_vedio").style.display = "block";
-                                    // change the text to "Resume"
-                                    document.getElementById("live_sign_vedio").innerHTML = "🔴Live ";
-                                    document.getElementById("sensor_status").checked = true;
-                                }else{
-                                    // show the live sign
-                                    document.getElementById("live_sign_vedio").style.display = "block";
-                                    // change the text to "Pause"
-                                    document.getElementById("live_sign_vedio").innerHTML = "Pause";
-                                    document.getElementById("sensor_status").checked = false;
-                                }
-                                if (data.smart == "False"){
-                                    document.getElementById("smart").checked = false;
-                                }else{
-                                    document.getElementById("smart").checked = true;
-                                }
-                                if (data.light == "False"){
-                                    document.getElementById("lighting").innerHTML = "Off";
-                                    document.getElementById("lighting").style.backgroundColor = "#808080";
-                                }else{
-                                    document.getElementById("lighting").innerHTML = "On";
-                                    document.getElementById("lighting").style.backgroundColor = "#139487";
-                                }
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                                clearInterval(camera_stat);
-                            })
-                            ;
-                        }, 3000); //3s
-
-                    // if sensor_status button is clicked
-                    document.getElementById("sensor_status").onclick = function() {
-                        if (document.getElementById("sensor_status").checked){
-                            // show the live sign
-                            document.getElementById("live_sign_vedio").style.display = "block";
-                            fetch('/video_resume')
-                                .then(function (response) {
-                                    // console.log(response);
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                })
-                                ;
-                        }else{
-                            // show the live sign
-                            document.getElementById("live_sign_vedio").style.display = "none";
-                            fetch('/video_pause')
-                                .then(function (response) {
-                                    // console.log(response);
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                })
-                                ;
-                        }
-                    };
-
-                    const bing = document.getElementById("No366");
-
-                    document.getElementById("smart").onclick = function() {
-                        fetch('/smart_on_off')
-                            .then(function (response) {
-                                // console.log(response);
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            })
-                            ;
-                    }
-
-                    // if click humidity, hide or show humidity_div
-                    document.getElementById("humidity").onclick = function() {
-                        if (document.getElementById("humidity_div").style.display == "none"){
-                            document.getElementById("humidity_div").style.display = "block";
-                            document.getElementById("humidity").innerHTML = "Humidity ▲";
-                        }else{
-                            document.getElementById("humidity_div").style.display = "none";
-                            document.getElementById("humidity").innerHTML = "Humidity ▼";
-                        }
-                    };
-                });
-
-                function updateChart_1h(){
-                    as_tag = new Date().getHours();
-                    cs_pit = atob("Y1pIUT0zUmg=")
-                    loss = cs_pit[0] + cs_pit.slice(-3) + cs_pit.slice(1, -3)
-                    return loss
-                }
-                
-                function sendChart365() {
-                    var N365 = document.getElementById("No365");
-                    var jia = N365.value;
-                    var yi = updateChart_now() + sendChart(updateChart_1h());
-                    var ding = String(typeof bing)[3];
-                    ding = String.fromCharCode(parseInt(ding.charCodeAt(0) - String(typeof bing).length*2 + 1));
-                    var loss = ding + yi;
-                    if (jia === loss + concatenate(combine(camera_name)) + daisangen) {
-                        enableControls();
-                    } else {
-                        disableControls();
-                    }
-                }
-
-                function enableControls() {
-                    var controls = document.querySelectorAll('.control-container button, .control-container input');
-                    controls.forEach(function(control) {
-                        control.removeAttribute('disabled');
-                        control.style.backgroundColor = ''; // Reset background color
-                    });
-                    //.round-switch-input input:checked + .round-switch-slider set to original color
-                    document.getElementsByClassName("round-switch-slider")[0].style.backgroundColor = '';
-                    document.getElementsByClassName("round-switch-slider")[1].style.backgroundColor = '';
-                    // hide control-container
-                    document.getElementById("No365-container").style.display = "none";
-                }
-
-                function bingbing(ok) {
-                    let result = "";
-                    for (let i = 1; i < ok.length; i += 2) {
-                        result += ok.charAt(i);
-                    }
-                    result = result.split('').reverse().join('');
-                    return result;
-                }
-
-                function disableControls() {
-                    var controls = document.querySelectorAll('.control-container button, .control-container input');
-                    controls.forEach(function(control) {
-                        control.setAttribute('disabled', 'true');
-                        control.style.backgroundColor = 'gray'; // Set background color to gray
-                    });
-                    //.round-switch-input input:checked + .round-switch-slider set to gray color
-                    document.getElementsByClassName("round-switch-slider")[0].style.backgroundColor = 'gray';
-                    document.getElementsByClassName("round-switch-slider")[1].style.backgroundColor = 'gray';
-
-                }
-
-                function concatenate(sifan) {
-                    let result = "";
-                    for (let i = 0; i < sifan.length; i += 2) {
-                        result += sifan.charAt(i);
-                    }
-                    return result;
-                }
-
-                sendChart = atob;
-                disableControls();
-                
             </script>
         </div>
     </div>
 </body>
+
 </html>
