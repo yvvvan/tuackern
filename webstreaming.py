@@ -14,6 +14,9 @@ import cv2
 import serial
 import os
 import requests
+import ipaddress
+from netaddr import IPNetwork
+import pickle
 
 # initialize the output frame and a lock used to ensure thread-safe
 # exchanges of the output frames (useful when multiple browsers/tabs
@@ -43,29 +46,48 @@ max_humidity = 311
 arduino = serial.Serial(port='/dev/ttyACM0', baudrate=9600, timeout=.1)
 camera_delay = 0.25
 
-# 获取IP地址的地理位置信息
-def get_ip_location(ip):
+# certificated ip
+certificated_ip = {}
+
+def get_ip_location_online(ip):
 	try:
-		if ip.startswith('192.168.'):
-			return {'country': 'DE'}
-		else:
-			response = requests.get(f'https://ipinfo.io/{ip}/json')
-			data = response.json()
-			return data
+		response = requests.get(f'https://ipinfo.io/{ip}/json')
+		data = response.json()
+		return data
 	except Exception as e:
 		print(f"{ip} Error retrieving IP location: {e} ")
 		return None
 
-# 中间件函数，用于检查请求的IP地址是否为德国
+with open('firewall.pkl', 'rb') as f:
+    firewall = pickle.load(f)
+
+def get_ip_location(ip_address):
+	if ip_address.startswith('192.168.'):
+		return {'country': 'DE'}
+	else:
+		ip = IPNetwork(ip_address)
+		supernets = ip.supernet(8)
+		supernets.append(IPNetwork(ip_address+'/32'))
+		x = set(firewall).intersection(set(supernets))
+		if x:
+			return {'country': 'DE'}
+		else:
+			get_ip_location_online(ip_address)
+		return None
+
 def check_ip_location_middleware():
-    # 获取请求的IP地址
-    client_ip = request.remote_addr
-    # 获取IP地址的地理位置信息
-    ip_location = get_ip_location(client_ip)
-    
-    # 如果无法获取地理位置信息，或者不是德国的IP，返回403 Forbidden错误
-    if not ip_location or 'country' not in ip_location or ip_location['country'] != 'DE':
-        abort(403, "Forbidden")
+	client_ip = request.remote_addr
+	if client_ip in certificated_ip:
+		if not certificated_ip[client_ip]:
+			abort(403, "Forbidden. Go Away. :)")
+	else:
+		ip_location = get_ip_location(client_ip)
+		if not ip_location or 'country' not in ip_location or ip_location['country'] != 'DE':
+			certificated_ip[client_ip] = False
+			abort(403, "Forbidden. Go Away. :)")
+		else:
+			certificated_ip[client_ip] = True
+
 
 # 应用中间件到所有路由
 @app.before_request
